@@ -21,7 +21,6 @@ inputs:
     required: true
   github-token:
     description: GitHub token with read access to the repository, default GitHub token is used if not provided
-    default: ${{ secrets.GITHUB_TOKEN }}
     required: false
 
 runs:
@@ -36,6 +35,9 @@ runs:
         REPOSITORY: ${{ inputs.repository }}
         TOKEN: ${{ inputs.github-token }}
       run: |
+        if [ -z "$TOKEN" ]; then
+          TOKEN=${{ secrets.GITHUB_TOKEN }}
+
         file_metadata_url="https://api.github.com/repos/$ORGANIZATION/$REPOSITORY/contents/$FILE_PATH"
 
         file_download_url=$(curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" $file_metadata_url | jq -r '.download_url')
