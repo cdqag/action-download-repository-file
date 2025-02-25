@@ -1,0 +1,44 @@
+name: Download file from GitHub repository
+description: Download a given file from a GitHub repository using only curl
+
+author: "CDQ AG"
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  organization:
+    description: Name of the organization that owns the repository
+    required: true
+  repository:
+    description: Name of the repository
+    required: true
+  file-path:
+    description: Path to the file in the repository, relative to the repository root
+    required: true
+  target-file:
+    description: Path to the file in the workspace where the downloaded file should be saved
+    required: true
+  github-token:
+    description: GitHub token with read access to the repository, default GitHub token is used if not provided
+    default: ${{ secrets.GITHUB_TOKEN }}
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Calculate the download URL
+      shell: bash
+      env: 
+        FILE_PATH: ${{ inputs.file-path }}
+        TARGET_FILE: ${{ inputs.target-file }}
+        ORGANIZATION: ${{ inputs.organization }}
+        REPOSITORY: ${{ inputs.repository }}
+        TOKEN: ${{ inputs.github-token }}
+      run: |
+        file_metadata_url="https://api.github.com/repos/$ORGANIZATION/$REPOSITORY/contents/$FILE_PATH"
+
+        file_download_url=$(curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" $file_metadata_url | jq -r '.download_url')
+
+        curl -L $file_download_url -o $TARGET_FILE
+
