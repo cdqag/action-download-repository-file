@@ -21,8 +21,7 @@ inputs:
     required: true
   github-token:
     description: GitHub token with read access to the repository, default GitHub token is used if not provided
-    default: ${{ secrets.GITHUB_TOKEN }}
-    required: false
+    required: true
 
 runs:
   using: 'composite'
