@@ -37,3 +37,7 @@ Example of downloading a file from a different repository:
 | `repository` | GitHub repository name in format `owner/repo-name` | No | Current repository |
 | `file` | Path to the file (relative to the repository root) | **Yes** | |
 | `destination` | Where to store the downloaded file contents| No | Name of the downloaded file |
+
+## License
+
+This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE) file for details.
