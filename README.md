@@ -36,6 +36,7 @@ Example of downloading a file from a different repository:
 | `github-token` | GitHub token that will be used to download the file| No | Default GitHub Token with access only to current repository |
 | `repository` | GitHub repository name in format `owner/repo-name` | No | Current repository |
 | `file` | Path to the file (relative to the repository root) | **Yes** | |
+| `ref` | git reference | No | `refs/heads/master` |
 | `destination` | Where to store the downloaded file contents| No | Name of the downloaded file |
 
 ## License
