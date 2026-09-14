@@ -39,6 +39,12 @@ Example of downloading a file from a different repository:
 | `ref` | git reference | No | `refs/heads/master` |
 | `destination` | Where to store the downloaded file contents| No | Name of the downloaded file |
 
+## About Creator
+
+![CDQ Logo](https://www.cdq.com/themes/custom/gavias_nonid/logo.svg)
+
+This action has been created and is maitained by [CDQ - Data Quality Solutions &amp; Services for Master Data](https://www.cdq.com/).
+
 ## License
 
 This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE) file for details.
